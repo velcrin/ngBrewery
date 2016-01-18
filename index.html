@@ -1,0 +1,17 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>ngBrewery</title>
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+</head>
+<body class="container" ng-app="Brewery">
+<header><h1>Welcome to the ngBrewery!</h1></header>
+<main ng-controller="BreweryCtrl" class="row">
+    <beer-item ng-repeat="beer in beers" beer="beer"></beer-item>
+</main>
+<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
