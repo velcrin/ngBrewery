@@ -1,5 +1,5 @@
 var module = angular.module('Brewery', []);
-module.factory('BreweryService', function() {
+module.factory('breweryService', function() {
     return {
         getBeers: function() {
             return [
@@ -42,20 +42,20 @@ module.factory('BreweryService', function() {
             ];
         },
 
-        getOnePinte: function(beer) {
-            alert('The pint ' + beer.name + ' is almost ready !');
+        getOnePint: function(beer) {
+            alert('The pint of ' + beer.name + ' is almost ready !');
         }
     }
 });
-module.controller('BreweryCtrl', ['$scope', 'BreweryService', function($scope, BreweryService) {
-    $scope.beers = BreweryService.getBeers();
+module.controller('BreweryCtrl', ['$scope', 'breweryService', function($scope, breweryService) {
+    $scope.beers = breweryService.getBeers();
 }]);
-module.filter('NoteFilter', function() {
+module.filter('noteFilter', function() {
     return function(value) {
         return value > 3 ? 'fa fa-heart' : '';
     };
 });
-module.directive('beerItem', ['BreweryService', function(BreweryService) {
+module.directive('beerItem', ['breweryService', function(breweryService) {
     return {
         restrict: 'E',
         scope: {
@@ -65,7 +65,7 @@ module.directive('beerItem', ['BreweryService', function(BreweryService) {
         '<div class="card medium">' +
         '<div class="card-image">' +
         '<img src="{{ beer.img }}">' +
-        '<span class="card-title"><i ng-class="beer.note | NoteFilter"></i> {{beer.name}}</span>' +
+        '<span class="card-title"><i ng-class="beer.note | noteFilter"></i>{{beer.name}}</span>' +
         '</div>' +
         '<div class="card-content">' +
         '<p>{{beer.description}}</p>' +
@@ -77,7 +77,7 @@ module.directive('beerItem', ['BreweryService', function(BreweryService) {
         '</div>',
         controller: ['$scope', function($scope) {
             $scope.selectBeer = function() {
-                BreweryService.getOnePinte($scope.beer);
+                breweryService.getOnePint($scope.beer);
             };
         }]
     };
